@@ -11,7 +11,7 @@ const MealItem = (props) => {
          id: props.id,
          name: props.name,
          quantity: quantity,
-         price: props.price
+         price: +props.price
        })
     }
     return (
