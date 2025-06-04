@@ -6,27 +6,41 @@ import Meals from './components/Meals/Meals';
 import Cart from './components/Cart/Cart';
 import CartProvider from './store/CartProvider';
 
+import { useSelector } from 'react-redux';
+
+
+// function App() {
+//   const [cartIsShown, setCartIsShown] = useState(false);
+
+//   const showCartHandler = () => {
+//     setCartIsShown(true);
+//   }
+//   const hideCartHandler = () => {
+//     setCartIsShown(false);
+//   }
+//   return (
+//     <CartProvider>
+//       {cartIsShown && <Cart onCloseCart={hideCartHandler} />}
+//       <Header onShowCart={showCartHandler} />
+//       <main>
+//         <Meals />
+//       </main>
+//     </CartProvider>
+//   );
+// }
+
 
 function App() {
-  const [cartIsShown, setCartIsShown] = useState(false);
+  const showCart = useSelector((state) => state.ui.cartIsVisible);
 
-  const showCartHandler = () => {
-    setCartIsShown(true);
-  }
-  const hideCartHandler = () => {
-    setCartIsShown(false);
-  }
   return (
-    <CartProvider>
-      {cartIsShown && <Cart onCloseCart={hideCartHandler} />}
-      <Header onShowCart={showCartHandler} />
+    <>
+      {showCart && <Cart />}
+      <Header />
       <main>
         <Meals />
       </main>
-      <footer>
-        <a href="https://www.flaticon.com/free-icons/retail" title="retail icons">Retail icons created by Frey Wazza - Flaticon</a>
-      </footer>
-    </CartProvider>
+    </>
   );
 }
 
